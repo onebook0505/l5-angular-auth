@@ -1,4 +1,4 @@
-## Laravel5 email authentication
+## 基本設定
  
 I've also added a 'resend activation email' option and made use of the Lang
 class, so this can easily be ported to a new language.
@@ -36,11 +36,11 @@ This should be fine if you've set up a gmail account to run with this.
 Then sign up by going to your app.
 
 
+## 開始使用
 
+open browser : 
 
-## Laravel5 thirdparty auth ( use socialite )
-
-參考 http://www.codeanchor.net/blog/complete-laravel-socialite-tutorial/
+	http://yourdomain
 
 
 
