@@ -61,17 +61,22 @@ class AuthController extends Controller {
 			$this->throwValidationException($request, $validator);
 		}
 
+		$userurl = $request->input('email');
 		$activation_code = str_random(60) . $request->input('email');
 		$user = new User;
 		$user->name = $request->input('name');
 		$user->email = $request->input('email');
+		$user->userurl = explode('@', $userurl)[0];
 		$user->password = bcrypt($request->input('password'));
 		$user->activation_code = $activation_code;
 		
 		if ($user->save()) {
 
 			$this->sendEmail($user);
-			return response()->json(array('success' => true));
+			return response()->json(array(
+				'success' => true,
+				'userurl' => $user->userurl
+				));
 		
 		} else {
 			return response()->json(array('success' => false));
@@ -89,7 +94,11 @@ class AuthController extends Controller {
 
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{	
-			return response()->json(array('success' => true));
+			$user = \Auth::user();
+			return response()->json(array(
+				'success' => true,
+				'userurl' => $user->userurl
+				));
 		} else {
 			return response()->json(array('success' => false));
 		}
@@ -153,11 +162,6 @@ class AuthController extends Controller {
        return $authenticateUser->execute($request->has('code'), $this, $provider);
 
     }
-
-    public function userHasLoggedIn($user) {
-	    // \Session::flash('message', 'Welcome, ' . $user->username);
-	    return redirect('/');
-	}
 
 
 	

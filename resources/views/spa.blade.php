@@ -25,7 +25,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-controller="HomeController">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#/">Logo</a>
+                <a class="navbar-brand" href="/">Logo</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">

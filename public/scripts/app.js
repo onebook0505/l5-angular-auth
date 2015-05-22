@@ -8,7 +8,8 @@
     ])
         .constant('urls', {
             BASE: 'http://l5-agr-auth.dev',
-            AUTH: 'http://l5-agr-auth.dev/auth'
+            AUTH_API: 'http://l5-agr-auth.dev/api/auth',
+            PROFILE_API: 'http://l5-agr-auth.dev/api/profile'
         })
         .config(['$routeProvider', '$httpProvider', '$locationProvider', function ($routeProvider, $httpProvider, $locationProvider) {
             $routeProvider.
@@ -27,6 +28,10 @@
                 when('/signup', {
                     templateUrl: 'partials/signup.html',
                     controller: 'HomeController'
+                }).
+                when('/:userurl', {
+                    templateUrl: 'partials/profile.html',
+                    controller: 'ProfileController'
                 }).
                 otherwise({
                     redirectTo: '/'

@@ -28,4 +28,9 @@ class TestController extends Controller {
 		return '123';
 	}
 
+	public function user(){
+		$user = \Auth::user();
+		dd($user);
+	}
+
 }

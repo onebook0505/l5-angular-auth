@@ -12,6 +12,7 @@
                 console.log(res.success);
                 if(res.success === true){
                     $localStorage.auth = res.success;
+                    $localStorage.userurl = res.userurl;
                     window.location = "/";
                     // $location.path('/');
                 } else {
@@ -64,6 +65,21 @@
                 });
             };
             $scope.auth = $localStorage.auth;
+        }
+    ]);
+
+    app.controller('ProfileController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth',
+        function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth) {
+            $scope.auth = $localStorage.auth;
+
+            $scope.userdata = function () {
+                if($routeParams.userurl == $localStorage.userurl){
+                    Auth.get(function (res) {
+                        console.log(res);
+                    });
+                }
+            }();
+
         }
     ]);
 })();

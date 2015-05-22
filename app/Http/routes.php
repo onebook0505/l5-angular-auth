@@ -16,6 +16,10 @@ Route::get('/', function() {
 	return view('spa');
 });
 
+// Route::get('/signin', function(){
+// 	return redirect('/#!/signin');
+// });
+
 
 //測試用 Route
 //Route::get('/test', 'TestController@index');
@@ -23,24 +27,33 @@ Route::get('/', function() {
 Route::post('/test', 'TestController@index');
 Route::get('/test', 'TestController@test');
 
+Route::get('/user', 'TestController@user');
+
 Route::get('/home', 'HomeController@index');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
 
-Route::get('/resendEmail', 'Auth\AuthController@resendEmail');
+// API ROUTES ==================================  
+Route::group(array('prefix' => 'api'), function() {
+		Route::controllers([
+		'auth' => 'Auth\AuthController',
+		'password' => 'Auth\PasswordController',
+	]);
 
-Route::get('/activate/{code}', 'Auth\AuthController@activateAccount');
+	Route::get('/resendEmail', 'Auth\AuthController@resendEmail');
+
+	Route::get('/activate/{code}', 'Auth\AuthController@activateAccount');
+
+	Route::get('/login/{provider}', 'Auth\AuthController@login');
+
+	Route::get('/profile/data', '')
+  
+});
 
 
-Route::get('/login/{provider}', 'Auth\AuthController@login');
 
-
-
-
-
+Route::any('{path}', function() {     
+	return view('spa');
+});
 
 
 
