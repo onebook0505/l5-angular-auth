@@ -10,7 +10,7 @@
             BASE: 'http://l5-agr-auth.dev',
             AUTH: 'http://l5-agr-auth.dev/auth'
         })
-        .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
+        .config(['$routeProvider', '$httpProvider', '$locationProvider', function ($routeProvider, $httpProvider, $locationProvider) {
             $routeProvider.
                 when('/', {
                     templateUrl: 'partials/home.html',
@@ -31,6 +31,8 @@
                 otherwise({
                     redirectTo: '/'
                 });
+            // use the HTML5 History API
+            $locationProvider.html5Mode(true).hashPrefix('!');
         }])
         .run(function($rootScope, $location, $localStorage) {
             $rootScope.$on( "$routeChangeStart", function(event, next) {

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
 
     <title>Laravel 5 / AngularJS </title>
 
@@ -28,9 +29,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li data-ng-hide="auth"><a ng-href="#/signin">Signin</a></li>
-                    <li data-ng-hide="auth"><a ng-href="#/signup">Signup</a></li>
-                    <li data-ng-show="auth"><a ng-href="#/" ng-click="logout()">Logout</a></li>
+                    <li data-ng-hide="auth"><a ng-href="/signin">Signin</a></li>
+                    <li data-ng-hide="auth"><a ng-href="/signup">Signup</a></li>
+                    <li data-ng-show="auth"><a ng-href="/" ng-click="logout()">Logout</a></li>
                 </ul>
             </div>
         </div>
