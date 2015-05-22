@@ -7,8 +7,8 @@
         'angular-loading-bar'
     ])
         .constant('urls', {
-            BASE: 'http://angular-form.dev',
-            AUTH: 'http://angular-form.dev/auth'
+            BASE: 'http://l5-agr-auth.dev',
+            AUTH: 'http://l5-agr-auth.dev/auth'
         })
         .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
             $routeProvider.

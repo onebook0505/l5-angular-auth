@@ -42,6 +42,10 @@ open browser :
 
 	http://yourdomain
 
+change app.js:
+
+	BASE: 'http://yourdomain',
+	AUTH: 'http://yourdomain/auth'
 
 
 
