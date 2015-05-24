@@ -40,11 +40,9 @@ Route::group(array('prefix' => 'api'), function() {
 
 	Route::get('/login/{provider}', 'Auth\AuthController@login');
 
-	Route::get('/user', 'ProfileController@index');
+	Route::get('/user/{userurl}', 'ProfileController@index');
   
 });
-
-
 
 Route::any('{path}', function() {     
 	return view('spa');

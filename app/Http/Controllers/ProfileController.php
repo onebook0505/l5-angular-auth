@@ -4,6 +4,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\User;
+
+use Illuminate\Http\Response;
 
 class ProfileController extends Controller {
 
@@ -12,9 +15,11 @@ class ProfileController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($userurl)
 	{
-		//
+		$user = User::where('userurl', $userurl)->first();
+
+		return response()->json($user);
 	}
 
 	/**

@@ -19,8 +19,9 @@
             }
 
             function successSignup(res) {
-                $localStorage.auth = res.success;
                 if(res.success === true){
+                    $localStorage.auth = res.success;
+                    $localStorage.userurl = res.userurl;
                     $location.path('/sendemail');
                 } else {
                     console.log('signup failed');
@@ -57,6 +58,7 @@
                 Auth.logout(function (res) {
                     if(res.success === true){
                         delete $localStorage.auth;
+                        delete $localStorage.userurl;
                         window.location = "/";
                     }
                     
@@ -68,20 +70,16 @@
 
     app.controller('ProfileController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth', 'User', 
         function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth, User) {
-            $scope.auth = $localStorage.auth;
-
+            
             $scope.getUserData = function () {
-                User.get($localStorage.userurl, function(res){
-                    
+                User.get($routeParams.userurl, function(res){
+                    console.log(res);
+                    $scope.name = res.name;
                 });
-
                 if($routeParams.userurl == $localStorage.userurl){
-                    Auth.get(function (res) {
-                        console.log(res);
-                    });
+                    $scope.owner = true;
                 }
             }();
-
         }
     ]);
 })();

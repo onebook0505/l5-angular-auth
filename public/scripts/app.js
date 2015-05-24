@@ -8,8 +8,8 @@
     ])
         .constant('urls', {
             BASE: 'http://l5-agr-auth.dev',
-            AUTH_API: 'http://l5-agr-auth.dev/api/auth',
-            USER_API: 'http://l5-agr-auth.dev/api/user'
+            AUTH_API: 'http://l5-agr-auth.dev/api/auth/',
+            USER_API: 'http://l5-agr-auth.dev/api/user/'
         })
         .config(['$routeProvider', '$httpProvider', '$locationProvider', function ($routeProvider, $httpProvider, $locationProvider) {
             $routeProvider.
