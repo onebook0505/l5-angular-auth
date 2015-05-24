@@ -24,11 +24,11 @@
 
     ]);
 
-    app.factory('Profile', ['$http', '$localStorage', 'urls', function ($http, $localStorage, urls) {
+    app.factory('User', ['$http', '$localStorage', 'urls', function ($http, $localStorage, urls) {
 
             return {
-                get: function (success) {
-                    $http.get(urls.PROFILE_API + '/data').success(success)
+                get: function (userurl, success) {
+                    $http.get(urls.USER_API + userurl).success(success)
                 }
             };
 

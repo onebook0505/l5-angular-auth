@@ -20,16 +20,11 @@ Route::get('/', function() {
 // 	return redirect('/#!/signin');
 // });
 
-
 //測試用 Route
 //Route::get('/test', 'TestController@index');
-
 Route::post('/test', 'TestController@index');
 Route::get('/test', 'TestController@test');
-
 Route::get('/user', 'TestController@user');
-
-Route::get('/home', 'HomeController@index');
 
 
 // API ROUTES ==================================  
@@ -45,7 +40,7 @@ Route::group(array('prefix' => 'api'), function() {
 
 	Route::get('/login/{provider}', 'Auth\AuthController@login');
 
-	Route::get('/profile/data', '')
+	Route::get('/user', 'ProfileController@index');
   
 });
 

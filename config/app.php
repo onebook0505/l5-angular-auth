@@ -147,6 +147,8 @@ return [
 
 		'Laravel\Socialite\SocialiteServiceProvider',
 
+		'Barryvdh\Debugbar\ServiceProvider',
+
 	],
 
 	/*
@@ -195,6 +197,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+		'Debugbar'  => 'Barryvdh\Debugbar\Facade',
 
 	],
 

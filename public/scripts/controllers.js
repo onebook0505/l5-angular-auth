@@ -6,8 +6,6 @@
     app.controller('HomeController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth',
         function ($rootScope, $scope, $location, $localStorage, Auth) {
 
-            console.log($localStorage);
-
             function successSignin(res) {
                 console.log(res.success);
                 if(res.success === true){
@@ -68,11 +66,15 @@
         }
     ]);
 
-    app.controller('ProfileController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth',
-        function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth) {
+    app.controller('ProfileController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth', 'User', 
+        function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth, User) {
             $scope.auth = $localStorage.auth;
 
-            $scope.userdata = function () {
+            $scope.getUserData = function () {
+                User.get($localStorage.userurl, function(res){
+                    
+                });
+
                 if($routeParams.userurl == $localStorage.userurl){
                     Auth.get(function (res) {
                         console.log(res);

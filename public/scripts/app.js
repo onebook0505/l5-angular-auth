@@ -9,7 +9,7 @@
         .constant('urls', {
             BASE: 'http://l5-agr-auth.dev',
             AUTH_API: 'http://l5-agr-auth.dev/api/auth',
-            PROFILE_API: 'http://l5-agr-auth.dev/api/profile'
+            USER_API: 'http://l5-agr-auth.dev/api/user'
         })
         .config(['$routeProvider', '$httpProvider', '$locationProvider', function ($routeProvider, $httpProvider, $locationProvider) {
             $routeProvider.
