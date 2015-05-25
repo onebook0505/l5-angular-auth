@@ -40,7 +40,7 @@ Route::group(array('prefix' => 'api'), function() {
 
 	Route::get('/login/{provider}', 'Auth\AuthController@login');
 
-	// Route::get('/user/upload', 'UserController@');
+	Route::post('/user/upload', 'UserController@upload');
 
 	Route::get('/user/{userurl}', 'UserController@index');
 

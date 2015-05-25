@@ -29,6 +29,9 @@
             return {
                 get: function (userurl, success) {
                     $http.get(urls.USER_API + userurl).success(success)
+                },
+                upload: function (data, success, error) {
+                    $http.post(urls.USER_API + 'upload').success(success).error(error)
                 }
             };
 

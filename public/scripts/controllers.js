@@ -82,4 +82,29 @@
             }();
         }
     ]);
+
+    app.controller('UploadController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth', 'User', 'CSRF_TOKEN', 
+        function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth, User, CSRF_TOKEN) {
+
+            function successUpload(res) {
+                console.log(res);
+            }
+
+            console.log(CSRF_TOKEN);
+            
+            $scope.upload = function () {
+                var formData = {
+                    user_file: $scope.file,
+                    csrf_token: CSRF_TOKEN,
+                    // test: $scope.test
+                };
+
+                User.upload(formData, successUpload, function (res) {
+                    console.log(res);
+                    $rootScope.error = res.error || 'Failed to upload.';
+                })
+            };
+        }
+    ]);
+
 })();

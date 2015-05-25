@@ -1,4 +1,22 @@
-<form class="form-horizontal" method="post" action="api/user/upload" accept-charset="UTF-8" enctype="multipart/form-data">  
-    <input type="file" class="form-control" id="user_icon_file" name="user_icon_file" placeholder="上傳音樂" value="">
-    <input type="submit" value="上傳音樂"></input>
-</form>  
+<!-- <form class="form-horizontal" method="post" action="/api/user/upload" accept-charset="UTF-8" enctype="multipart/form-data"> 
+	<input type="file" class="form-control" id="user_file" name="user_file" placeholder="上傳圖片" value="">
+	<input type="submit" value="上傳圖片"></input>
+</form> -->
+<form class="form-horizontal" role="form" accept-charset="UTF-8" enctype="multipart/form-data" ng-submit="upload()">
+    <div class="form-group">
+        <div class="col-sm-10">
+            <input type="file" class="form-control" id="user_file" name="user_file" placeholder="上傳圖片" value="" ng-model="file">
+        </div>
+    </div>
+<!--     <div class="form-group">
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="test" placeholder="test" ng-model="test">
+        </div>
+    </div> -->
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary pull-right">上傳</button>
+        </div>
+    </div>
+    <p data-ng-show="error" class="error">{{ error }}</p>
+</form>
