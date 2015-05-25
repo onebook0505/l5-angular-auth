@@ -8,18 +8,28 @@ use App\User;
 
 use Illuminate\Http\Response;
 
-class ProfileController extends Controller {
+class UserController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index($userurl)
+	public function index()
 	{
 		$user = User::where('userurl', $userurl)->first();
 
 		return response()->json($user);
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		//
 	}
 
 	/**
