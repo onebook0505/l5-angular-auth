@@ -91,6 +91,8 @@
             }
 
             console.log(CSRF_TOKEN);
+
+            $scope.csrf_token = CSRF_TOKEN;
             
             $scope.upload = function () {
                 var formData = {

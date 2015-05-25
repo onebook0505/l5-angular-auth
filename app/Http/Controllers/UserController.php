@@ -26,8 +26,8 @@ class UserController extends Controller {
 
 	public function upload()
 	{
+		// return Request::all();
 	    $file = Request::file('user_file'); // 取得檔案相關資料存在$file
-	    dd($file);
 	    $extension = $file->getClientOriginalExtension(); // 取得副檔名
 	    $file_name = strval(time()).str_random(5).'.'.$extension; // 產生新的檔案名稱
 
