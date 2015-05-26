@@ -70,11 +70,15 @@
 
     app.controller('ProfileController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth', 'User', 
         function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth, User) {
+
+
             
             $scope.getUserData = function () {
                 User.get($routeParams.userurl, function(res){
                     console.log(res);
                     $scope.name = res.name;
+                    console.log(res.avatar);
+                    $scope.avatar = res.avatar;
                 });
                 if($routeParams.userurl == $localStorage.userurl){
                     $scope.owner = true;
