@@ -66,6 +66,7 @@ class AuthController extends Controller {
 		$user = new User;
 		$user->name = $request->input('name');
 		$user->email = $request->input('email');
+		$user->about = '';
 		$user->userurl = explode('@', $userurl)[0];
 		$user->password = bcrypt($request->input('password'));
 		$user->activation_code = $activation_code;
