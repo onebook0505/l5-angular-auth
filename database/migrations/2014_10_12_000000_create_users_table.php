@@ -17,8 +17,6 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->string('username')->nullable();
-			//如果要加入讓使用者客製化 userurl ，同時又有第三方服務的話複雜度將會提高不少
-			$table->string('userurl')->unique()->nullable();
 			$table->string('email')->unique();
 			$table->string('password', 60);
 			$table->rememberToken();
