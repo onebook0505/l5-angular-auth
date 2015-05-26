@@ -20,7 +20,7 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($userurl)
 	{
 		$user = User::where('userurl', $userurl)->first();
 
