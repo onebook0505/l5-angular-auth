@@ -70,8 +70,6 @@
 
     app.controller('ProfileController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth', 'User', 
         function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth, User) {
-
-
             
             $scope.getUserData = function () {
                 User.get($routeParams.userurl, function(res){
@@ -87,29 +85,39 @@
         }
     ]);
 
-    app.controller('UploadController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth', 'User', 'CSRF_TOKEN', 
-        function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth, User, CSRF_TOKEN) {
+    app.controller('UploadController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth', 'User', 'CSRF_TOKEN', 'Upload',  
+        function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth, User, CSRF_TOKEN, Upload) {
 
             function successUpload(res) {
                 console.log(res);
             }
 
             console.log(CSRF_TOKEN);
-
             $scope.csrf_token = CSRF_TOKEN;
-            
-            $scope.upload = function () {
-                var formData = {
-                    user_file: $scope.file,
-                    csrf_token: CSRF_TOKEN,
-                    // test: $scope.test
-                };
 
-                User.upload(formData, successUpload, function (res) {
-                    console.log(res);
-                    $rootScope.error = res.error || 'Failed to upload.';
-                })
+            // files model只要更改，就執行 upload fn．
+            $scope.$watch('files', function () {
+                $scope.upload($scope.files);
+            });
+
+            $scope.upload = function (files) {
+                if (files && files.length) {
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        Upload.upload({
+                            url: '/api/user/upload',
+                            fields: {'username': $scope.username},
+                            file: file
+                        }).progress(function (evt) {
+                            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                            console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                        }).success(function (data, status, headers, config) {
+                            console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                        });
+                    }
+                }
             };
+            
         }
     ]);
 

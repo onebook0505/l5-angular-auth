@@ -4,7 +4,8 @@
     angular.module('app', [
         'ngStorage',
         'ngRoute',
-        'angular-loading-bar'
+        'angular-loading-bar',
+        'ngFileUpload'
     ])
         .constant('urls', {
             BASE: 'http://l5-agr-auth.dev',

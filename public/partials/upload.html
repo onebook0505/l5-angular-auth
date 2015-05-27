@@ -1,19 +1,19 @@
 <!-- 最簡易的上傳方法 -->
-<form class="form-horizontal" method="post" action="/api/user/upload" accept-charset="UTF-8" enctype="multipart/form-data"> 
+<!-- <form class="form-horizontal" method="post" action="/api/user/upload" accept-charset="UTF-8" enctype="multipart/form-data"> 
 	<input type="hidden" name="_token" value="{{ csrf_token }}">
 	<input type="file" class="form-control" id="user_file" name="user_file" placeholder="上傳圖片" value="">
 	<input type="submit" value="上傳圖片"></input>
-</form>
-<!-- <form class="form-horizontal" role="form" accept-charset="UTF-8" enctype="multipart/form-data" ng-submit="upload()">
-    <div class="form-group">
-        <div class="col-sm-10">
-            <input type="file" class="form-control" id="user_file" name="user_file" placeholder="上傳圖片" value="" ng-model="file">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary pull-right">上傳</button>
-        </div>
-    </div>
-    <p data-ng-show="error" class="error">{{ error }}</p>
 </form> -->
+
+<!-- Angular 上傳方法 -->
+watching model:
+<div class="button" ngf-select ng-model="files">Upload using model $watch</div>
+<div class="button" ngf-select ngf-change="upload($files)">Upload on file change</div>
+Drop File:
+<div ngf-drop ng-model="files" class="drop-box" 
+    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+    ngf-accept="'image/*,application/pdf'">Drop Images or PDFs files here</div>
+<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+<!-- ngf-src 跟上面的 ngf-select 是對應的 -->
+Image thumbnail: <img ngf-src="files[0]" ngf-accept="'image/*'">
+Audio preview: <audio controls ngf-src="files[0]" ngf-accept="'audio/*'"></audio>
