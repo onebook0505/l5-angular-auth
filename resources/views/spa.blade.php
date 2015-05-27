@@ -43,9 +43,8 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-route.min.js"></script>
-    <!-- <script src="/lib/ngStorage.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/4.2.4/ng-file-upload.min.js"></script>
     <script src="//rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
-    <!-- <script src="/lib/loading-bar.js"></script> -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js"></script>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/controllers.js"></script>
