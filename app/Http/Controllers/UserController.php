@@ -29,16 +29,12 @@ class UserController extends Controller {
 
 	public function upload()
 	{
-	    $file = Request::file('file'); // 取得檔案相關資料存在$file
-	    $extension = $file->getClientOriginalExtension(); // 取得副檔名
-	    $file_name = strval(time()).str_random(5).'.'.$extension; // 產生新的檔案名稱
+	    $file = Request::file('file');
+	    $extension = $file->getClientOriginalExtension();
 
-	    $destination_path = public_path().'/user-upload/'; // 上傳的檔案要存在伺服器哪個資料夾
+	    if (Request::hasFile('file')) {
 
-	    if (Request::hasFile('file')) { // hasFile確認是否有上傳
-
-	    	//Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
-	        $upload_success = $file->move($destination_path, $file_name); // 上傳成功就把檔案移至$destination_path、用$file_name重新命名
+	    	Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
 	        return response()->json(array('success' => true));
 	    } else {
 	        return response()->json(array('success' => false));
