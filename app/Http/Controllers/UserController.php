@@ -36,16 +36,13 @@ class UserController extends Controller {
 	    $destination_path = public_path().'/user-upload/'; // 上傳的檔案要存在伺服器哪個資料夾
 
 	    if (Request::hasFile('file')) { // hasFile確認是否有上傳
+
 	    	//Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
 	        $upload_success = $file->move($destination_path, $file_name); // 上傳成功就把檔案移至$destination_path、用$file_name重新命名
 	        return response()->json(array('success' => true));
 	    } else {
 	        return response()->json(array('success' => false));
 	    }
-
-	    // $user_obj = \Auth::user(); // 現在登入的user存在$user_obj
-	    // $user_obj->avatar = $file_name; // user的user_icon欄位存入$file_name
-	    // $user_obj->save();
 
 	}
 
@@ -76,9 +73,26 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		
+		$file = Request::file('file'); // 取得檔案相關資料存在$file
+	    $extension = $file->getClientOriginalExtension(); // 取得副檔名
+
+	    if (Request::hasFile('file')) { // hasFile確認是否有上傳
+
+	    	$user_obj = \Auth::user(); // 現在登入的user存在$user_obj
+	    	if($user_obj->avatar == '250x250.gif'){ //如果使用者原本的頭像不是 250x250.gif
+	    	} else {
+	    		Storage::delete($user_obj->avatar); //從檔案庫裡刪除原本的圖檔
+	    	}
+	    	$user_obj->avatar = $file->getFilename().'.'.$extension; //把圖檔名稱存在資料庫裡
+	    	$user_obj->save();
+	    	
+	    	Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
+	        return response()->json(array('success' => true));
+	    } else {
+	        return response()->json(array('success' => false));
+	    }
 	}
 
 	/**

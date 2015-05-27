@@ -88,10 +88,6 @@
     app.controller('UploadController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth', 'User', 'CSRF_TOKEN', 'Upload',  
         function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth, User, CSRF_TOKEN, Upload) {
 
-            function successUpload(res) {
-                console.log(res);
-            }
-
             console.log(CSRF_TOKEN);
             $scope.csrf_token = CSRF_TOKEN;
 
@@ -106,6 +102,48 @@
                         var file = files[i];
                         Upload.upload({
                             url: '/api/user/upload',
+                            fields: {'username': $scope.username},
+                            file: file
+                        }).progress(function (evt) {
+                            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                            console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                        }).success(function (data, status, headers, config) {
+                            console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                        });
+                    }
+                }
+            };
+
+        }
+    ]);
+
+    app.controller('EditController', ['$rootScope', '$scope', '$location', '$localStorage', '$routeParams', 'Auth', 'User', 'CSRF_TOKEN', 'Upload',  
+        function ($rootScope, $scope, $location, $localStorage, $routeParams, Auth, User, CSRF_TOKEN, Upload) {
+
+            console.log(CSRF_TOKEN);
+            $scope.csrf_token = CSRF_TOKEN;
+
+            //去拿自己的 data
+            $scope.getUserData = function () {
+                User.get($localStorage.userurl, function(res){
+                    console.log(res);
+                    $scope.name = res.name;
+                    console.log(res.avatar);
+                    $scope.avatar = res.avatar;
+                });
+            }();
+
+            // files model只要更改，就執行 upload fn．
+            $scope.$watch('files', function () {
+                $scope.upload($scope.files);
+            });
+
+            $scope.upload = function (files) {
+                if (files && files.length) {
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        Upload.upload({
+                            url: '/api/user/edit',
                             fields: {'username': $scope.username},
                             file: file
                         }).progress(function (evt) {

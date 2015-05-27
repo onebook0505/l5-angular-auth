@@ -35,7 +35,7 @@
                     controller: 'UploadController'
                 }).
                 when('/edit', {
-                    templateUrl: 'partials/upload.html',
+                    templateUrl: 'partials/edit.html',
                     controller: 'EditController'
                 }).
                 when('/:userurl', {

@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="jumbotron">
+            <img ngf-src="files[0]" ngf-accept="'image/*'" ng-src="/user-upload/{{avatar}}">
+            <!-- Angular 上傳方法 -->
+            watching model:
+            <div class="button" ngf-select ng-model="files">修改頭像</div>
+            Drop File:
+            <div ngf-drop ng-model="files" class="drop-box" 
+                ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+                ngf-accept="'image/*,application/pdf'">Drop Images or PDFs files here</div>
+            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+            
+            <label>名稱</label>
+            <input type="text">{{name}}</input>
+        </div>
+    </div>
+</div>
