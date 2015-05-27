@@ -14,7 +14,7 @@ class UpdateUsersTable2 extends Migration {
 	{
 		Schema::table('users', function(Blueprint $table)
 		{
-           $table->string('avatar');
+           $table->string('avatar')->default('250x250.gif');
            $table->string('provider');
            $table->string('provider_id')->unique()->nullable();
 		});

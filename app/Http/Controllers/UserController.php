@@ -37,8 +37,8 @@ class UserController extends Controller {
 	    $destination_path = public_path().'/user-upload/'; // 上傳的檔案要存在伺服器哪個資料夾
 
 	    if (Request::hasFile('user_file')) { // hasFile確認是否有上傳
-	    	Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
-	        //$upload_success = $file->move($destination_path, $file_name); // 上傳成功就把檔案移至$destination_path、用$file_name重新命名
+	    	//Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
+	        $upload_success = $file->move($destination_path, $file_name); // 上傳成功就把檔案移至$destination_path、用$file_name重新命名
 	        return response()->json(array('success' => true));
 	    } else {
 	        return response()->json(array('success' => false));
@@ -79,7 +79,7 @@ class UserController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		
 	}
 
 	/**

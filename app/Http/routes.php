@@ -42,6 +42,8 @@ Route::group(array('prefix' => 'api'), function() {
 
 	Route::post('/user/upload', 'UserController@upload');
 
+	Route::post('/user/edit', 'UserController@edit');
+
 	Route::get('/user/{userurl}', 'UserController@index');
 
 

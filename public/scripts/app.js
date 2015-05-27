@@ -33,6 +33,10 @@
                     templateUrl: 'partials/upload.html',
                     controller: 'UploadController'
                 }).
+                when('/edit', {
+                    templateUrl: 'partials/upload.html',
+                    controller: 'EditController'
+                }).
                 when('/:userurl', {
                     templateUrl: 'partials/profile.html',
                     controller: 'ProfileController'

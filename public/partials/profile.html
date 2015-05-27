@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="jumbotron">
-            <img ng-src="{{avatar}}">
+            <img ng-src="/user-upload/{{avatar}}">
             <h1>{{name}}</h1>
 
             <div class="row">
                 <div data-ng-hide="owner" class="col-md-6">
-                    <a href="/settings" class="btn btn-default btn-primary margin-right" role="button">Follow</a>
+                    <a href="/" class="btn btn-default btn-primary margin-right" role="button">Follow</a>
                 </div>
                 <div data-ng-show="owner" class="col-md-6">
                     <a href="/settings" class="btn btn-default btn-primary margin-right" role="button">Edit</a>
